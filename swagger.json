@@ -1,0 +1,273 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Domentation vehicle tracking API",
+        "version": "1.0.0",
+        "title": "Vehicle tracking APIs",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "davidshumbusho10@gmail.com",
+            "name": "David Shumbusho"
+        },
+        "licence": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "tags": [
+        {
+            "name": "User",
+            "description": "user operations"
+        }
+    ],
+    "paths": {
+        "/api/v1/user/register/admin": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Register admin",
+                "description": "Register admin",
+                "operationId": "registerAdmin",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Admin object",
+                        "required": true,
+                        "properties": {
+                            "names": {
+                                "type": "string",
+                                "example": "Shumbusho David"
+                            },
+                            "phoneNumber": {
+                                "type": "string",
+                                "example": "0788781096"
+                            },
+                            "email": {
+                                "type": "string",
+                                "example": "davidshumbusho10@gmail.com"
+                            },
+                            "password": {
+                                "type": "string"
+                            },
+                            "nationalID": {
+                                "type": "string",
+                                "example": "1199999999999999"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/v1/user/login": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Login user",
+                "description": "Login user",
+                "operationId": "loginUser",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "User object",
+                        "required": true,
+                        "properties": {
+                            "email": {
+                                "type": "string",
+                                "example": "davidshumbusho10@gmail.com"
+                            },
+                            "password": {
+                                "type": "string",
+                                "example": "string"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/v1/user/register/user": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Register user",
+                "description": "Register user",
+                "operationId": "registerUser",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "User object",
+                        "required": true,
+                        "properties": {
+                            "names": {
+                                "type": "string",
+                                "example": "Shumbusho David"
+                            },
+                            "phoneNumber": {
+                                "type": "string",
+                                "example": "0788781096"
+                            },
+                            "email": {
+                                "type": "string",
+                                "example": "davidshumbusho10@gmail.com"
+                            },
+                            "password": {
+                                "type": "string"
+                            },
+                            "nationalID": {
+                                "type": "string",
+                                "example": "1199999999999999"
+                            },
+                            "address": {
+                                "type": "string",
+                                "example": "Kigali"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/v1/vehicle": {
+            "post": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "Add vehicle",
+                "description": "Add vehicle",
+                "operationId": "addVehicle",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Vehicle object",
+                        "required": true,
+                        "properties": {
+                            "manufactureCompany": {
+                                "type": "string",
+                                "example": "Toyota"
+                            },
+                            "manufactureYear": {
+                                "type": "string",
+                                "example": "2019"
+                            },
+                            "price": {
+                                "type": "string",
+                                "example": "13 million"
+                            },
+                            "modelName": {
+                                "type": "string",
+                                "example": "Toyota RAV4"
+                            },
+                            "owner": {
+                                "type": "string",
+                                "example": "645a59784c81ba5d9eb33d83"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/v1/vehicle/{page}/{perPage}": {
+            "get": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "Get all vehicles",
+                "description": "Get all vehicles",
+                "operationId": "getAllVehicles",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "page",
+                        "description": "page number",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "in": "path",
+                        "name": "perPage",
+                        "description": "number of items per page",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        }
+    }
+}
