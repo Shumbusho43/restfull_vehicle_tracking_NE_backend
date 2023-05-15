@@ -3,7 +3,8 @@ const Router = express.Router();
 const {
     registerAdmin,
     login,
-    registerUser
+    registerUser,
+    getAllUsers
 } = require('../controllers/user.controller');
 const {
     protect,
@@ -13,4 +14,5 @@ const {
 Router.post('/register/admin', registerAdmin);
 Router.post('/register/user', protect, role("admin"), registerUser);
 Router.post('/login', login);
+Router.get('/', protect, getAllUsers)
 module.exports.userRouter = Router;

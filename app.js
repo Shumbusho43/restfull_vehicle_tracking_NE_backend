@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const swaggerDocs = require("./swagger.json")
 const dotenv = require('dotenv');
 dotenv.config();
+const morgan=require('morgan');
 const bodyParser = require('body-parser');
 const {
     dbConnection
@@ -22,6 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(morgan('dev'))
 app.use(cookieParser())
 const helmet = require('helmet');
 app.use(helmet());

@@ -55,11 +55,12 @@ exports.registerAdmin = async (req, res) => {
         //generate token
         const token = newUser.generateAuthToken();
         //send token to client
-        res.header("x-auth-token", token).json({
+        return res.status(201).json({
             success: true,
-            status: 200,
+            status: 201,
             message: "user created successfully",
-            data: newUser
+            data: newUser,
+            token: " " + token
         });
     } catch (error) {
         console.log(error);
@@ -94,7 +95,7 @@ exports.login = async (req, res) => {
         });
         //generate token
         const token = await user.generateAuthToken();
-        res.cookie("token", "Bearer " + token, {
+        res.cookie("token","Bearer "+token, {
             httpOnly: true,
             maxAge: 24 * 60 * 60 * 1000
         })
@@ -104,7 +105,7 @@ exports.login = async (req, res) => {
             status: 200,
             message: "login successful",
             data: user,
-            token
+            token: token
         });
     } catch (error) {
         console.log(error);
@@ -167,12 +168,36 @@ exports.registerUser = async (req, res) => {
         //generate token
         const token = newUser.generateAuthToken();
         //send token to client
-        res.header("x-auth-token", "Bearer " + token).json({
+        res.header("x-auth-token",token).json({
             success: true,
             status: 200,
             message: "user created successfully",
             data: newUser
         });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            message: "Internal server error"
+        });
+    }
+}
+
+//getting list of users
+
+exports.getAllUsers = async (req, res) => {
+    try {
+        const users = await User.find().select('-password');
+        if (users) return res.status(200).json({
+            success: true,
+            status: 200,
+            message: "users retrieved successfully",
+            data: users
+        })
+        return res.status(404).json({
+            success: false,
+            status: 404,
+            message: "No users found"
+        })
     } catch (error) {
         console.log(error);
         return res.status(500).json({
