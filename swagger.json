@@ -18,10 +18,18 @@
         {
             "name": "User",
             "description": "user operations"
+        },
+        {
+            "name": "Owner",
+            "description": "Owner operations"
+        },
+        {
+            "name": "Vehicle",
+            "description": "Vehicle operations"
         }
     ],
     "paths": {
-        "/api/v1/user/register/admin": {
+        "/api/v1/user/register": {
             "post": {
                 "tags": [
                     "User"
@@ -56,6 +64,10 @@
                             },
                             "password": {
                                 "type": "string"
+                            },
+                            "reEnterPassword":{
+                             "type":"string",
+                             "example":"string"
                             },
                             "nationalID": {
                                 "type": "string",
@@ -116,14 +128,14 @@
                 }
             }
         },
-        "/api/v1/user/register/user": {
+        "/api/v1/owner/register": {
             "post": {
                 "tags": [
-                    "User"
+                    "Owner"
                 ],
-                "summary": "Register user",
-                "description": "Register user",
-                "operationId": "registerUser",
+                "summary": "Register owner",
+                "description": "Register owner",
+                "operationId": "registerOwner",
                 "consumes": [
                     "application/json"
                 ],
@@ -134,7 +146,7 @@
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "User object",
+                        "description": "Owner object",
                         "required": true,
                         "properties": {
                             "names": {
@@ -144,13 +156,6 @@
                             "phoneNumber": {
                                 "type": "string",
                                 "example": "0788781096"
-                            },
-                            "email": {
-                                "type": "string",
-                                "example": "davidshumbusho10@gmail.com"
-                            },
-                            "password": {
-                                "type": "string"
                             },
                             "nationalID": {
                                 "type": "string",
@@ -173,14 +178,14 @@
                 }
             }
         },
-        "/api/v1/user": {
+        "/api/v1/owner": {
             "get": {
                 "tags": [
-                    "User"
+                    "Owner"
                 ],
-                "summary": "Get all users",
-                "description": "Get all users",
-                "operationId": "getAllUsers",
+                "summary": "Get all owners",
+                "description": "Get all owners",
+                "operationId": "getAllOwners",
                 "consumes": [
                     "application/json"
                 ],

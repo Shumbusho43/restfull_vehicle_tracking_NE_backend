@@ -5,10 +5,10 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 const {
     generateBusPlateNumber
-} = require('../utils/plateNumber');
+} = require('../../utils/plateNumber');
 const {
     generateChassisNumber
-} = require('../utils/chasisNumber');
+} = require('../../utils/chasisNumber');
 const vehicleSchema = new mongoose.Schema({
     chasisNumber: {
         type: String,
@@ -54,7 +54,7 @@ const vehicleSchema = new mongoose.Schema({
     },
     owner: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
+        ref: "Owner"
     }
 }, {
     timestamps: true

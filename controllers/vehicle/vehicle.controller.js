@@ -1,12 +1,13 @@
 //registering vehicle by admin
 
+const { Owner } = require("../../models/owner/owner.model");
 const {
     User
-} = require("../models/user.model");
+} = require("../../models/vehicle/vehicle.model");
 const {
     validateVehicle,
     Vehicle
-} = require("../models/vehicle.model");
+} = require("../../models/vehicle/vehicle.model");
 
 exports.registerVehicle = async (req, res) => {
     try {
@@ -32,7 +33,7 @@ exports.registerVehicle = async (req, res) => {
             });
         }
         //check if owner exists
-        const user = await User.findById(owner);
+        const user = await Owner.findById(owner);
         if (!user) {
             return res.status(404).json({
                 success: false,
@@ -106,7 +107,7 @@ exports.getVehicles = async (req, res) => {
             .limit(perPage)
             .populate("owner", "-password");
 
-        res.status(200).json({
+       return res.status(200).json({
             success: true,
             status: 200,
             message: "Vehicles retrieved successfully",

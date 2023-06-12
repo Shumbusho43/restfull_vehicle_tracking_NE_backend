@@ -6,17 +6,20 @@ const cookieParser = require('cookie-parser');
 const swaggerDocs = require("./swagger.json")
 const dotenv = require('dotenv');
 dotenv.config();
-const morgan=require('morgan');
+const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const {
     dbConnection
 } = require('./models/db');
 const {
     userRouter
-} = require('./routes/user.routes');
+} = require('./routes/user/user.routes');
 const {
     vehicleRouter
-} = require('./routes/vehicle.routes');
+} = require('./routes/vehicle/vehicle.routes');
+const {
+    ownerRoutes
+} = require('./routes/owner/owner.routes');
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
@@ -45,6 +48,8 @@ app.use("/documentation", swaggerUi.serve, swaggerUi.setup(swaggerDocs, false, {
 }))
 app.use("/api/v1/user", userRouter)
 app.use("/api/v1/vehicle", vehicleRouter)
+app.use("/api/v1/owner", ownerRoutes)
+
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
     console.log(`server is running on port ${port}`);

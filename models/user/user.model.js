@@ -41,17 +41,6 @@ const userSchema = new mongoose.Schema({
         min: 6,
         max: 100
     },
-    role: {
-        type: String,
-        default: "user",
-        enum: ["user", "admin"]
-    },
-    address: {
-        type: String,
-        trim: true,
-        min: 3,
-        max: 100
-    }
 }, {
     timestamps: true
 });
@@ -63,8 +52,12 @@ const validateUser = (user) => {
         nationalID: Joi.string().min(16).max(16).required(),
         phoneNumber: Joi.string().min(10).max(10).required(),
         password: Joi.string().min(6).max(100).required(),
-        role: Joi.string().default("user").valid("user", "admin"),
-        address: Joi.string().min(3).max(100),
+        reEnterPassword: Joi.string()
+            .valid(Joi.ref('password'))
+            .required()
+            .messages({
+                'any.only': 'Passwords do not match'
+            }),
         email: Joi.string().email().required().min(6).max(100)
     });
     return schema.validate(user);
