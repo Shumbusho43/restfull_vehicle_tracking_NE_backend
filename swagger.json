@@ -65,9 +65,9 @@
                             "password": {
                                 "type": "string"
                             },
-                            "reEnterPassword":{
-                             "type":"string",
-                             "example":"string"
+                            "reEnterPassword": {
+                                "type": "string",
+                                "example": "string"
                             },
                             "nationalID": {
                                 "type": "string",
@@ -294,6 +294,59 @@
                     },
                     "400": {
                         "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/v1/vehicle/all": {
+            "get": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "Get all vehicles",
+                "description": "Get all vehicles",
+                "operationId": "getAllVehicles",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/v1/project/image/{id}": {
+            "put": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "Upload project photo",
+                "description": "Upload project photo",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "parameters": [
+                    {
+                        "in": "formData",
+                        "name": "photo",
+                        "type": "file"
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Photo uploaded"
                     }
                 }
             }

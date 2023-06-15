@@ -1,6 +1,8 @@
 //registering vehicle by admin
 
-const { Owner } = require("../../models/owner/owner.model");
+const {
+    Owner
+} = require("../../models/owner/owner.model");
 const {
     User
 } = require("../../models/vehicle/vehicle.model");
@@ -107,7 +109,7 @@ exports.getVehicles = async (req, res) => {
             .limit(perPage)
             .populate("owner", "-password");
 
-       return res.status(200).json({
+        return res.status(200).json({
             success: true,
             status: 200,
             message: "Vehicles retrieved successfully",
@@ -115,6 +117,28 @@ exports.getVehicles = async (req, res) => {
                 vehicles,
                 currentPage: page,
                 totalPages
+            }
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            message: "Internal server error"
+        });
+    }
+
+}
+//getting all vehicles without pagination for mobile
+exports.getVehiclesWithoutPag = async (req, res) => {
+    try {
+        const vehicles = await Vehicle.find()
+            .populate("owner", "-password");
+
+        return res.status(200).json({
+            success: true,
+            status: 200,
+            message: "Vehicles retrieved successfully",
+            data: {
+                vehicles
             }
         });
     } catch (error) {
