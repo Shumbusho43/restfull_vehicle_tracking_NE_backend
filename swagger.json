@@ -204,58 +204,94 @@
         },
         "/api/v1/vehicle": {
             "post": {
-                "tags": [
-                    "Vehicle"
-                ],
-                "summary": "Add vehicle",
-                "description": "Add vehicle",
-                "operationId": "addVehicle",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "Vehicle object",
-                        "required": true,
-                        "properties": {
-                            "manufactureCompany": {
-                                "type": "string",
-                                "example": "Toyota"
-                            },
-                            "manufactureYear": {
-                                "type": "string",
-                                "example": "2019"
-                            },
-                            "price": {
-                                "type": "string",
-                                "example": "13 million"
-                            },
-                            "modelName": {
-                                "type": "string",
-                                "example": "Toyota RAV4"
-                            },
-                            "owner": {
-                                "type": "string",
-                                "example": "645a59784c81ba5d9eb33d83"
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation"
-                    },
-                    "400": {
-                        "description": "Invalid input"
-                    }
+              "tags": [
+                "Vehicle"
+              ],
+              "summary": "Add vehicle",
+              "description": "Add vehicle",
+              "operationId": "addVehicle",
+              "consumes": [
+                "multipart/form-data"
+              ],
+              "produces": [
+                "application/json"
+              ],
+              "parameters": [
+                {
+                  "name": "photo",
+                  "in": "formData",
+                  "description": "Photo of the vehicle",
+                  "required": true,
+                  "type": "file"
+                },
+                {
+                  "name": "manufactureCompany",
+                  "in": "formData",
+                  "description": "Manufacture company of the vehicle",
+                  "required": true,
+                  "type": "string",
+                  "example": "Toyota"
+                },
+                {
+                  "name": "manufactureYear",
+                  "in": "formData",
+                  "description": "Manufacture year of the vehicle",
+                  "required": true,
+                  "type": "string",
+                  "example": "2019"
+                },
+                {
+                  "name": "price",
+                  "in": "formData",
+                  "description": "Price of the vehicle",
+                  "required": true,
+                  "type": "string",
+                  "example": "13 million"
+                },
+                {
+                  "name": "modelName",
+                  "in": "formData",
+                  "description": "Model name of the vehicle",
+                  "required": true,
+                  "type": "string",
+                  "example": "Toyota RAV4"
+                },
+                {
+                  "name": "vehiclePlateNumber",
+                  "in": "formData",
+                  "description": "Vehicle plate number",
+                  "required": true,
+                  "type": "string",
+                  "example": "RAV4"
+                },
+                {
+                  "name": "chasisNumber",
+                  "in": "formData",
+                  "description": "Chasis number of the vehicle",
+                  "required": true,
+                  "type": "string",
+                  "example": "123456789"
+                },
+                {
+                  "name": "owner",
+                  "in": "formData",
+                  "description": "ID of the owner",
+                  "required": true,
+                  "type": "string",
+                  "example": "645a59784c81ba5d9eb33d83"
                 }
+              ],
+              "responses": {
+                "200": {
+                  "description": "Successful operation"
+                },
+                "400": {
+                  "description": "Invalid input"
+                }
+              }
             }
-        },
+          }
+,          
         "/api/v1/vehicle/{page}/{perPage}": {
             "get": {
                 "tags": [
@@ -318,35 +354,6 @@
                     },
                     "400": {
                         "description": "Invalid input"
-                    }
-                }
-            }
-        },
-        "/api/v1/project/image/{id}": {
-            "put": {
-                "tags": [
-                    "Vehicle"
-                ],
-                "summary": "Upload project photo",
-                "description": "Upload project photo",
-                "consumes": [
-                    "multipart/form-data"
-                ],
-                "parameters": [
-                    {
-                        "in": "formData",
-                        "name": "photo",
-                        "type": "file"
-                    },
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Photo uploaded"
                     }
                 }
             }

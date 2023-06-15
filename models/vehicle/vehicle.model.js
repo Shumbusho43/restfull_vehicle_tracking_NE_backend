@@ -52,6 +52,12 @@ const vehicleSchema = new mongoose.Schema({
         min: 3,
         max: 100
     },
+    photo: {
+        type: String
+    },
+    cloudinary_id: {
+        type: String
+    },
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Owner"
@@ -69,16 +75,17 @@ const validateVehicle = (vehicle) => {
         price: Joi.string().min(6).max(100).required(),
         vehiclePlateNumber: Joi.string().min(6).max(100),
         modelName: Joi.string().min(3).max(100).required(),
-        owner: Joi.string().required()
+        owner: Joi.string().required(),
+        photo: Joi.string()
     });
     return schema.validate(vehicle);
 }
 //generate plate number with function in utils folder and import it here 
 //generate chasis number with function in utils folder and import it here
-vehicleSchema.pre("save", async function (next) {
-    this.vehiclePlateNumber = await generateBusPlateNumber();
-    this.chasisNumber = await generateChassisNumber();
-    next();
-});
+// vehicleSchema.pre("save", async function (next) {
+//     this.vehiclePlateNumber = await generateBusPlateNumber();
+//     this.chasisNumber = await generateChassisNumber();
+//     next();
+// });
 module.exports.Vehicle = mongoose.model("Vehicle", vehicleSchema);
 module.exports.validateVehicle = validateVehicle;

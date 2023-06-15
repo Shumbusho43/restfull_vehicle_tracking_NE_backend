@@ -1,6 +1,7 @@
 //setting up server
 const express = require('express');
 const cors = require("cors");
+const fileUpload = require("express-fileupload")
 const swaggerUi = require("swagger-ui-express");
 const cookieParser = require('cookie-parser');
 const swaggerDocs = require("./swagger.json")
@@ -28,6 +29,10 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(morgan('dev'))
 app.use(cookieParser())
+app.use(fileUpload({
+    useTempFiles: true,
+    tempFileDir: '/tmp/'
+}));
 const helmet = require('helmet');
 app.use(helmet());
 const rateLimit = require('express-rate-limit');
