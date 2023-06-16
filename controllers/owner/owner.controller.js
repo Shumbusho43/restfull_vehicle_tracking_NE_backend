@@ -1,7 +1,10 @@
 const {
     validateOwner,
     Owner
-} = require('../../models/owner/owner.model')
+} = require('../../models/owner/owner.model');
+const {
+    Vehicle
+} = require('../../models/vehicle/vehicle.model');
 //signup user including address
 exports.registerOwner = async (req, res) => {
     try {
@@ -74,6 +77,31 @@ exports.getAllOwners = async (req, res) => {
             success: false,
             status: 404,
             message: "No owners found"
+        })
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            message: "Internal server error"
+        });
+    }
+}
+
+//get owner vehicles
+exports.getOwnerVehicles = async (req, res) => {
+    try {
+        const vehicle = await Vehicle.find({
+            owner: req.params.id
+        })
+        if (!vehicle) return res.status(404).json({
+            success: false,
+            status: 404,
+            message: "owner has no vehicles"
+        })
+        return res.status(200).json({
+            success: true,
+            status: 200,
+            message: "owner vehicles retrieved successfully",
+            data: vehicle
         })
     } catch (error) {
         console.log(error);

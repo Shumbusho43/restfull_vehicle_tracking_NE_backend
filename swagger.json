@@ -202,6 +202,40 @@
                 }
             }
         },
+        "/api/v1/owner/{id}/vehicles": {
+            "get": {
+                "tags": [
+                    "Owner"
+                ],
+                "summary": "Get all vehicles of an owner",
+                "description": "Get all vehicles of an owner",
+                "operationId": "getAllVehiclesOfOwner",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Owner id",
+                        "required": true,
+                        "type": "string",
+                        "example": "5f0b3b7b9b0b3a1b1c7b3b7b"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
         "/api/v1/vehicle": {
             "post": {
               "tags": [
