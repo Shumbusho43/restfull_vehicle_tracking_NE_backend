@@ -6,6 +6,8 @@ const {
 } = require("../../models/user/user.model");
 
 exports.registerAdmin = async (req, res) => {
+    // #swagger.tags = ['User']
+     // #swagger.description = 'Endpoint to register an admin'
     try {
         const {
             names,
@@ -77,6 +79,8 @@ exports.registerAdmin = async (req, res) => {
 
 //login 
 exports.login = async (req, res) => {
+    // #swagger.tags = ['User']
+        // #swagger.description = 'Endpoint to login an admin'
     const {
         email,
         password

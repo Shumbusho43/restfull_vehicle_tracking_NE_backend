@@ -53,7 +53,7 @@ app.use(hpp());
 // app.use("/documentation", swaggerUi.serve, swaggerUi.setup(swaggerDocs, false, {
 //     docExpansion: "none"
 // }))
-app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile, false, {
+app.use("/documentation", swaggerUi.serve, swaggerUi.setup(swaggerFile, false, {
     docExpansion: "none"
 }))
 app.use("/", userRouter)

@@ -7,6 +7,8 @@ const {
 } = require('../../models/vehicle/vehicle.model');
 //signup user including address
 exports.registerOwner = async (req, res) => {
+    // #swagger.tags = ['Owner']
+    // #swagger.description = 'Endpoint to register an owner'
     try {
         const {
             names,
@@ -65,6 +67,8 @@ exports.registerOwner = async (req, res) => {
 //getting list of users
 
 exports.getAllOwners = async (req, res) => {
+    // #swagger.tags = ['Owner']
+    // #swagger.description = 'Endpoint to get all owners'
     try {
         const owners = await Owner.find();
         if (owners) return res.status(200).json({
@@ -88,6 +92,8 @@ exports.getAllOwners = async (req, res) => {
 
 //get owner vehicles
 exports.getOwnerVehicles = async (req, res) => {
+    // #swagger.tags = ['Owner']
+    // #swagger.description = 'Endpoint to get owner vehicles'
     try {
         const vehicle = await Vehicle.find({
             owner: req.params.id

@@ -14,6 +14,8 @@ const {
 } = require("../../models/vehicle/vehicle.model");
 
 exports.registerVehicle = async (req, res) => {
+    // #swagger.tags = ['Vehicle']
+    // #swagger.description = 'Endpoint to register a vehicle'
             try {
                 const {
                     vehiclePlateNumber,
@@ -125,6 +127,8 @@ exports.registerVehicle = async (req, res) => {
             }
             //getting all vehicles by admin 
             exports.getVehicles = async (req, res) => {
+                // #swagger.tags = ['Vehicle']
+                // #swagger.description = 'Endpoint to get all vehicles'
                 try {
                     const page = parseInt(req.params.page) || 1;
                     const perPage = parseInt(req.params.perPage) || 10;
@@ -173,6 +177,8 @@ exports.registerVehicle = async (req, res) => {
             }
             //getting all vehicles without pagination for mobile
             exports.getVehiclesWithoutPag = async (req, res) => {
+                // #swagger.tags = ['Vehicle']
+                // #swagger.description = 'Endpoint to get all vehicles without pagination'
                 try {
                     const vehicles = await Vehicle.find()
                         .populate("owner", "-password");
