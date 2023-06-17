@@ -9,8 +9,8 @@ const {
     protect,
     role
 } = require("../../middleware/protect");
-Router.get('/', protect, getAllOwners)
-Router.post('/register', protect, registerOwner);
+Router.get('/api/v1/owner', protect, getAllOwners)
+Router.post('/api/v1/owner/register', protect, registerOwner);
 ///get owner vehicles
-Router.get('/:id/vehicles', protect, getOwnerVehicles);
+Router.get('/api/v1/owner/:id/vehicles', protect, getOwnerVehicles);
 module.exports.ownerRoutes = Router;

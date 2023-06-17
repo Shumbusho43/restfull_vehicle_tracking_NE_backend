@@ -4,6 +4,6 @@ const {
     registerAdmin,
     login,
 } = require('../../controllers/user/user.controller');
-Router.post('/register', registerAdmin);
-Router.post('/login', login);
+Router.post('/api/v1/user/register', registerAdmin);
+Router.post('/api/v1/user/login', login);
 module.exports.userRouter = Router;

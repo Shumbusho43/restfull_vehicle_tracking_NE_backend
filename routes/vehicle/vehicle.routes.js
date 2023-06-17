@@ -8,7 +8,7 @@ const {
     getVehiclesWithoutPag
 } = require('../../controllers/vehicle/vehicle.controller');
 const Router = express.Router();
-Router.post("/", protect, registerVehicle);
-Router.get("/:page/:perPage", protect, getVehicles);
-Router.get("/all", protect, getVehiclesWithoutPag);
+Router.post("/api/v1/vehicle", protect, registerVehicle);
+Router.get("/api/v1/vehicle/:page/:perPage", protect, getVehicles);
+Router.get("/api/v1/vehicle/all", protect, getVehiclesWithoutPag);
 module.exports.vehicleRouter = Router;

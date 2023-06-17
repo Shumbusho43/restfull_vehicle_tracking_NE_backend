@@ -1,5 +1,7 @@
 //setting up server
 const express = require('express');
+const swaggerAutogen = require('swagger-autogen')();
+const swaggerFile = require('./testing.json')
 const cors = require("cors");
 const fileUpload = require("express-fileupload")
 const swaggerUi = require("swagger-ui-express");
@@ -48,12 +50,15 @@ app.use(xss());
 const hpp = require('hpp');
 app.use(hpp());
 //documentation
-app.use("/documentation", swaggerUi.serve, swaggerUi.setup(swaggerDocs, false, {
+// app.use("/documentation", swaggerUi.serve, swaggerUi.setup(swaggerDocs, false, {
+//     docExpansion: "none"
+// }))
+app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile, false, {
     docExpansion: "none"
 }))
-app.use("/api/v1/user", userRouter)
-app.use("/api/v1/vehicle", vehicleRouter)
-app.use("/api/v1/owner", ownerRoutes)
+app.use("/", userRouter)
+app.use("/", vehicleRouter)
+app.use("/", ownerRoutes)
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
