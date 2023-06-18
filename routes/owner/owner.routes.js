@@ -10,6 +10,7 @@ const {
     role
 } = require("../../middleware/protect");
 Router.get('/api/v1/owner', protect, getAllOwners)
+// Router.get('/api/v1/owner', protect,role("admin","user"), getAllOwners)
 Router.post('/api/v1/owner/register', protect, registerOwner);
 ///get owner vehicles
 Router.get('/api/v1/owner/:id/vehicles', protect, getOwnerVehicles);
