@@ -3,12 +3,6 @@
 
 const mongoose = require('mongoose');
 const Joi = require('joi');
-const {
-    generateBusPlateNumber
-} = require('../../utils/plateNumber');
-const {
-    generateChassisNumber
-} = require('../../utils/chasisNumber');
 const vehicleSchema = new mongoose.Schema({
     chasisNumber: {
         type: String,
@@ -80,12 +74,5 @@ const validateVehicle = (vehicle) => {
     });
     return schema.validate(vehicle);
 }
-//generate plate number with function in utils folder and import it here 
-//generate chasis number with function in utils folder and import it here
-// vehicleSchema.pre("save", async function (next) {
-//     this.vehiclePlateNumber = await generateBusPlateNumber();
-//     this.chasisNumber = await generateChassisNumber();
-//     next();
-// });
 module.exports.Vehicle = mongoose.model("Vehicle", vehicleSchema);
 module.exports.validateVehicle = validateVehicle;
