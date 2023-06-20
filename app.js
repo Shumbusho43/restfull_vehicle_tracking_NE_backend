@@ -1,9 +1,8 @@
 //setting up server
-const express = require('express');
-const swaggerAutogen = require('swagger-autogen')();
-const swaggerFile = require('./testing.json')
+const express = require('express');;
 const cors = require("cors");
 const fileUpload = require("express-fileupload")
+const swaggerFile = require('./testing.json')
 const swaggerUi = require("swagger-ui-express");
 const cookieParser = require('cookie-parser');
 const swaggerDocs = require("./swagger.json")
