@@ -47,6 +47,9 @@ app.use(mongoSanitize());
 const xss = require('xss-clean');
 app.use(xss());
 const hpp = require('hpp');
+const {
+    Log
+} = require('./models/logs/logs.model');
 app.use(hpp());
 //documentation
 // app.use("/documentation", swaggerUi.serve, swaggerUi.setup(swaggerDocs, false, {
@@ -55,13 +58,57 @@ app.use(hpp());
 app.use("/documentation", swaggerUi.serve, swaggerUi.setup(swaggerFile, false, {
     docExpansion: "none"
 }))
+
+//storing logs
+// Define a custom middleware to store the logs in MongoDB
+app.use(async (req, res, next) => {
+    const {
+        method,
+        path
+    } = req;
+    const start = Date.now();
+
+    res.on('finish', () => {
+        const {
+            statusCode
+        } = res;
+        const responseTime = Date.now() - start;
+
+        const log = new Log({
+            method,
+            path,
+            statusCode,
+            responseTime
+        });
+
+        log.save()
+            .catch((err) => {
+                console.error('Error saving log:', err);
+            });
+    });
+
+    next();
+});
+//getting logs
+app.get('/logs', async (req, res) => {
+    try {
+        const logs = await Log.find();
+        res.json(logs);
+    } catch (error) {
+        console.error('Error retrieving logs:', error);
+        res.status(500).json({
+            message: 'Error retrieving logs'
+        });
+    }
+});
+
 app.use("/", userRouter)
 app.use("/", vehicleRouter)
 app.use("/", ownerRoutes)
 
 const port = process.env.PORT || 5000;
+//connecting to database
+dbConnection();
 app.listen(port, () => {
     console.log(`server is running on port ${port}`);
 });
-//connecting to database
-dbConnection();
